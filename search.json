@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "DSA4199: Final Year Project",
+    "title": "DSA4199: Deep Learning for Evaluation of Synthetic Speech",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\n\nProject\nThe focus of this project is on automated evaluation of synthetic speech, ie: Text-To-Speech (TTS) models.\n\n\n\n\n\n\nWarning\n\n\n\nEverything here is a work in progress!\n\n\nIt aims to cover the following non-exhaustive list of topics in a gentle but technical manner:\n\nAudio processing in general\nHow deep learning is applied to audio waveforms for different downstream tasks.\nExisting literature on SoTA TTS models\n\nModel architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)\n(digression) Some notebooks on how to inference them\n(digression) Some notebooks on how to fine tune them\n\nExisting literature on automated TTS evals\n\nTypes of metrics (MoS, prosody, naturalness, …)\nDatasets (NISQA, MOSNet, …)\nSome notebooks on how to inference them\nHow to train them\nEvaluation\n\nReview of contributions & conclusion\n\n\n\nTypesetting\nThis Quarto book serves as living documentation, which should later turn into the final paper I need for submission.\n\n\n\n\n\n\nUsing Quarto over Overleaf\n\n\n\nQuarto is able to export all this markup to TeX and then to a PDF document automatically thanks to Pandoc.\nNot only do I get to write Markdown, I’m also able to version control everything using Git & automate publishing to both PDF & static HTML (this website) upon push to main with this GitHub Action",
     "crumbs": [
       "Preface"
     ]
@@ -14,19 +14,19 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "1.1 Background\nIn comtemporary academia, the burgeoning field of synthetic speech synthesis has garnered substantial attention and interest owing to its multifarious applications spanning from human-computer interaction, such as voice powered ChatGPT, Google Home and Alexa to assistive technologies, like the Rabbit R1. Within this domain, the imperative for automated evaluations arises due to several paramount reasons.\nFirstly, the proliferation of Text-To-Speech (TTS) systems across diverse sectors necessitates a systematic means of evaluating their performance. Different downstream use cases demand optimizing for different metrics. Long form speech generation such as audiobook readers require natural flow and consistent prosody, whereas voice cloning requires evaluating intonation, cadence and emotional nuances. In applications like virtual assistants and navigation systems, intelligibility, clarity and prompt delivery are paramount.\nSecondly, these nuances are not directly present at the optimization step during training. Without jumping the gun on terminology, TTS models in general are trained on mel-spectrograms with the goal of minimizing their reconstruction loss, more formally known as spectral accuracy. This is typically computed by Mean Squared Error, \\(\\text{MSE}\\) or Mean Absolute Error, \\(\\text{MAE}\\). These metrics do not contain any information on the previously mentioned nuances in speech but merely how well it approximates the training data. This phenomenon gives rise to the need for manual assessments by human judgement. For example, the Mean Opinion Score (MoS) serves as a popular metric employed for this purpose. It operates on the premise of perceived quality of synthesized speech samples, typically on a Likert scale ranging from 1 (poor) to 5 (excellent).\nIt is no surpise then that the existing process of developing TTS systems is beset by the limitations inherent in manual evaluations. Primarily, they are labor-intensive, required significant time and resources to collect & analyze. This approach not only imposes constraints on the scalability of evaluation efforts but also introduces biases and variability stemming from inter-rater differences in subjective perception.\nHowever, the recent advancements in deep learning such as the advent of Transformers and Self Attention has accelerated research on data-driven approaches to predict these subjective quality metrics with remarkable accuracy, including Lo et al. (2019) and Mittag et al. (2021). The significance of reliable evaluation systems can alleviate the reliance on manual human assessments but also offer a scalable and objective means of evaluating TTS systems.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.",
+    "objectID": "intro.html#analog-to-digital",
+    "href": "intro.html#analog-to-digital",
+    "title": "1  Introduction",
+    "section": "1.2 Analog to Digital",
+    "text": "1.2 Analog to Digital\n\n\n\n\nLo, Chen-Chou, Szu-Wei Fu, Wen-Chin Huang, Xin Wang, Junichi Yamagishi, Yu Tsao, and Hsin-Min Wang. 2019. “MOSNet: Deep Learning-Based Objective Assessment for Voice Conversion.” In Interspeech 2019. Interspeech_2019. ISCA. https://doi.org/10.21437/interspeech.2019-2003.\n\n\nMittag, Gabriel, Babak Naderi, Assmaa Chehadi, and Sebastian Möller. 2021. “NISQA: A Deep CNN-Self-Attention Model for Multidimensional Speech Quality Prediction with Crowdsourced Datasets.” In Interspeech 2021. Interspeech_2021. ISCA. https://doi.org/10.21437/interspeech.2021-299.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
@@ -34,7 +34,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Lo, Chen-Chou, Szu-Wei Fu, Wen-Chin Huang, Xin Wang, Junichi Yamagishi,\nYu Tsao, and Hsin-Min Wang. 2019. “MOSNet: Deep Learning-Based\nObjective Assessment for Voice Conversion.” In Interspeech\n2019. Interspeech_2019. ISCA. https://doi.org/10.21437/interspeech.2019-2003.\n\n\nMittag, Gabriel, Babak Naderi, Assmaa Chehadi, and Sebastian Möller.\n2021. “NISQA: A Deep CNN-Self-Attention Model for Multidimensional\nSpeech Quality Prediction with Crowdsourced Datasets.” In\nInterspeech 2021. Interspeech_2021. ISCA. https://doi.org/10.21437/interspeech.2021-299.",
     "crumbs": [
       "References"
     ]

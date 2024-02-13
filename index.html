@@ -9,7 +9,7 @@
 <meta name="author" content="Li Yang Hew">
 <meta name="dcterms.date" content="2024-02-06">
 
-<title>DSA4199: Final Year Project</title>
+<title>DSA4199: Deep Learning for Evaluation of Synthetic Speech</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -97,7 +97,11 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">DSA4199: Final Year Project</a> 
+      <a href="./">DSA4199: Deep Learning for Evaluation of Synthetic Speech</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/hewliyang/fyp" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./DSA4199--Deep-Learning-for-Evaluation-of-Synthetic-Speech.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -121,8 +125,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./tts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Text To Speech Architectures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./related-work.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Related Work</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./experiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results and Conclusions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -141,16 +163,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
+  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
+  <li><a href="#typesetting" id="toc-typesetting" class="nav-link" data-scroll-target="#typesetting">Typesetting</a></li>
+  </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hewliyang/fyp/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hewliyang/fyp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DSA4199: Final Year Project</h1>
+<h1 class="title">DSA4199: Deep Learning for Evaluation of Synthetic Speech</h1>
 </div>
 
 
@@ -181,10 +207,63 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<section id="project" class="level3">
+<h3 class="anchored" data-anchor-id="project">Project</h3>
+<p>The focus of this project is on automated evaluation of synthetic speech, ie: <strong>Text-To-Speech (TTS)</strong> models.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Everything here is a work in progress!</p>
+</div>
+</div>
+<p>It aims to cover the following non-exhaustive list of topics in a gentle but technical manner:</p>
+<ol type="1">
+<li>Audio processing in general</li>
+<li>How deep learning is applied to audio waveforms for different downstream tasks.</li>
+<li>Existing literature on SoTA TTS models
+<ul>
+<li>Model architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)</li>
+<li><code>(digression)</code> Some notebooks on how to inference them</li>
+<li><code>(digression)</code> Some notebooks on how to fine tune them</li>
+</ul></li>
+<li>Existing literature on automated TTS evals
+<ul>
+<li>Types of metrics (MoS, prosody, naturalness, …)</li>
+<li>Datasets (NISQA, MOSNet, …)</li>
+<li>Some notebooks on how to inference them</li>
+<li><strong>How to train them</strong></li>
+<li>Evaluation</li>
+</ul></li>
+<li>Review of contributions &amp; conclusion</li>
+</ol>
+</section>
+<section id="typesetting" class="level3">
+<h3 class="anchored" data-anchor-id="typesetting">Typesetting</h3>
+<p>This <a href="https://quarto.org/"><strong>Quarto</strong></a> book serves as living documentation, which should later turn into the final paper I need for submission.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Using Quarto over Overleaf
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto is able to export all this markup to <strong>TeX</strong> and then to a PDF document automatically thanks to <a href="https://pandoc.org/">Pandoc</a>.</p>
+<p>Not only do I get to write <strong>Markdown</strong>, I’m also able to version control everything using Git &amp; automate publishing to both PDF &amp; static HTML (this website) upon push to <code>main</code> with this <a href="https://github.com/hewliyang/fyp/blob/main/.github/workflows/publish.yml">GitHub Action</a></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -589,4 +668,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hewliyang/fyp/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hewliyang/fyp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
