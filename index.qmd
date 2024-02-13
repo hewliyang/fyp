@@ -1,5 +1,36 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+### Project
+The focus of this project is on automated evaluation of synthetic speech, ie: **Text-To-Speech (TTS)** models.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+::: {.callout-warning}
+Everything here is a work in progress!
+:::
+
+It aims to cover the following non-exhaustive list of topics in a gentle but technical manner:
+
+1. Audio processing in general
+2. How deep learning is applied to audio waveforms for different downstream tasks.
+3. Existing literature on SoTA TTS models
+    - Model architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)
+    - `(digression)` Some notebooks on how to inference them
+    - `(digression)` Some notebooks on how to fine tune them
+4.  Existing literature on automated TTS evals
+    - Types of metrics (MoS, prosody, naturalness, ...)
+    - Datasets (NISQA, MOSNet, ...)
+    - Some notebooks on how to inference them
+    - **How to train them**
+    - Evaluation
+5. Review of contributions & conclusion
+
+### Typesetting
+
+This [**Quarto**](https://quarto.org/) book serves as living documentation, which should later turn into the final paper I need for submission.
+
+::: {.callout-tip}
+### Using Quarto over Overleaf
+
+Quarto is able to export all this markup to **TeX** and then to a PDF document automatically thanks to [Pandoc](https://pandoc.org/).
+
+Not only do I get to write **Markdown**, I'm also able to version control everything using Git & automate publishing to both PDF & static HTML (this website) upon push to `main` with this [GitHub Action](https://github.com/hewliyang/fyp/blob/main/.github/workflows/publish.yml)
+:::

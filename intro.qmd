@@ -1,5 +1,15 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+## Background
 
-See @knuth84 for additional discussion of literate programming.
+In comtemporary academia, the burgeoning field of synthetic speech synthesis has garnered substantial attention and interest owing to its multifarious applications spanning from human-computer interaction, such as voice powered ChatGPT, Google Home and Alexa to assistive technologies, like the [Rabbit R1](https://www.rabbit.tech/). Within this domain, the imperative for automated evaluations arises due to several paramount reasons.
+
+Firstly, the proliferation of **Text-To-Speech (TTS)** systems across diverse sectors necessitates a systematic means of evaluating their performance. Different downstream use cases demand optimizing for different metrics. Long form speech generation such as audiobook readers require natural flow and consistent prosody, whereas voice cloning requires evaluating intonation, cadence and emotional nuances. In applications like virtual assistants and navigation systems, intelligibility, clarity and prompt delivery are paramount.
+
+Secondly, these nuances are not directly present at the optimization step during training. Without jumping the gun on terminology, TTS models in general are trained on **mel-spectrograms** with the goal of minimizing their reconstruction loss, more formally known as *spectral accuracy*. This is typically computed by **Mean Squared Error**, $\text{MSE}$ or **Mean Absolute Error**, $\text{MAE}$. These metrics do not contain any information on the previously mentioned nuances in speech but merely how well it approximates the training data. This phenomenon gives rise to the need for manual assessments by human judgement. For example, the **Mean Opinion Score (MoS)** serves as a popular metric employed for this purpose. It operates on the premise of perceived quality of synthesized speech samples, typically on a Likert scale ranging from 1 (poor) to 5 (excellent).
+
+It is no surpise then that the existing process of developing TTS systems is beset by the limitations inherent in manual evaluations. Primarily, they are labor-intensive, required significant time and resources to collect & analyze. This approach not only imposes constraints on the scalability of evaluation efforts but also introduces biases and variability stemming from inter-rater differences in subjective perception.
+
+However, the recent advancements in deep learning such as the advent of **Transformers** and **Self Attention** has accelerated research on data-driven approaches to predict these subjective quality metrics with remarkable accuracy, including @Lo_2019 and @Mittag_2021. The significance of reliable evaluation systems can alleviate the reliance on manual human assessments but also offer a scalable and objective means of evaluating TTS systems.
+
+## Analog to Digital
