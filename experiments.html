@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conclusion.html" rel="next">
+<link href="./results.html" rel="next">
 <link href="./related-work.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -142,8 +162,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results and Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -158,7 +184,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dataset-curation" id="toc-dataset-curation" class="nav-link active" data-scroll-target="#dataset-curation"><span class="header-section-number">4.1</span> Dataset Curation</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hewliyang/fyp/edit/main/experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hewliyang/fyp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -182,8 +214,55 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="dataset-curation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="dataset-curation"><span class="header-section-number">4.1</span> Dataset Curation</h2>
+<p>We compile the commercially usable subset of the overarching NISQA training set as follows.</p>
+<ol type="1">
+<li><strong>Blizzard Challenge (2008 - 2023)</strong></li>
+</ol>
+<p>The Blizzard Challenge is a TTS competition overseen by SynSIG, a special interest group of ISCA, the International Speech Communication Association.</p>
+<p>Every year, research groups from numerous global institutions undertake the task of training a model to synthesise speech in various languages. The dataset provided by the challenge are often <a href="https://www.synsig.org/index.php/Blizzard_Challenge_organisation#Data_providers_for_each_challenge">donated</a> by external organisations, subject to an agreed level of licensing.</p>
+<p>Generated speech submitted by participants are then evaluated via systematic subjective tests by a mixture of paid and volunteer human listeners. In particular, the subjects are asked to rate the quality of each synthesized sample according to a set of pre-defined criterion, including, speaker similarity, naturalness (MOS) and intelligibility (WER). This collection of these three metrics are largely consistent across the years.</p>
+<p>A summary of the final dataset is described in the following table.</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 20%">
+<col style="width: 29%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Years</th>
+<th>Comments</th>
+<th>Metrics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Blizzard Challenge</td>
+<td>2008 -&gt; 2023</td>
+<td>Only commercial allowed subset</td>
+<td><code>mos</code>, <code>wer</code>, <code>speaker_sim</code></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Additional, we note that there is a significant amount of available data not included in our dataset due to restrictions on commercial usage. These include <span class="citation" data-cites="maniati22_interspeech">Maniati et al. (<a href="references.html#ref-maniati22_interspeech" role="doc-biblioref">2022</a>)</span> with over 300 thousand listener ratings.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-maniati22_interspeech" class="csl-entry" role="listitem">
+Maniati, Georgia, Alexandra Vioni, Nikolaos Ellinas, Karolos Nikitaras, Konstantinos Klapsas, June Sig Sung, Gunu Jho, Aimilios Chalamandaris, and Pirros Tsiakoulis. 2022. <span>“<span class="nocase">SOMOS: The Samsung Open MOS Dataset for the Evaluation of Neural Text-to-Speech Synthesis</span>.”</span> In <em>Proc. Interspeech 2022</em>, 2388–92. <a href="https://doi.org/10.21437/Interspeech.2022-10922">https://doi.org/10.21437/Interspeech.2022-10922</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -575,13 +654,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./related-work.html" class="pagination-link  aria-label=" &lt;span="" work&lt;="" span&gt;"="">
+      <a href="./related-work.html" class="pagination-link" aria-label="Related Work">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Related Work</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conclusion.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Results and Conclusions</span>">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results and Conclusions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./results.html" class="pagination-link" aria-label="Results">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -590,4 +669,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/hewliyang/fyp/edit/main/experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hewliyang/fyp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hewliyang/fyp/edit/main/experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/hewliyang/fyp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "DSA4199: Deep Learning for Evaluation of Synthetic Speech",
     "section": "",
-    "text": "Preface\n\nProject\nThe focus of this project is on automated evaluation of synthetic speech, ie: Text-To-Speech (TTS) models.\n\n\n\n\n\n\nWarning\n\n\n\nEverything here is a work in progress!\n\n\nIt aims to cover the following non-exhaustive list of topics in a gentle but technical manner:\n\nAudio processing in general\nHow deep learning is applied to audio waveforms for different downstream tasks.\nExisting literature on SoTA TTS models\n\nModel architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)\n(digression) Some notebooks on how to inference them\n(digression) Some notebooks on how to fine tune them\n\nExisting literature on automated TTS evals\n\nTypes of metrics (MoS, prosody, naturalness, …)\nDatasets (NISQA, MOSNet, …)\nSome notebooks on how to inference them\nHow to train them\nEvaluation\n\nReview of contributions & conclusion\n\n\n\nTypesetting\nThis Quarto book serves as living documentation, which should later turn into the final paper I need for submission.\n\n\n\n\n\n\nUsing Quarto over Overleaf\n\n\n\nQuarto is able to export all this markup to TeX and then to a PDF document automatically thanks to Pandoc.\nNot only do I get to write Markdown, I’m also able to version control everything using Git & automate publishing to both PDF & static HTML (this website) upon push to main with this GitHub Action",
+    "text": "Preface\n\n\n\n\n\n\nWarning\n\n\n\nThis page is a work in progress\n\n\n\nProject\nThe focus of this project is on automated evaluation of synthetic speech, ie: Text-To-Speech (TTS) models.\nIt aims to cover the following non-exhaustive list of topics in a gentle but technical manner:\n\nAudio processing in general\nHow deep learning is applied to audio waveforms for different downstream tasks.\nExisting literature on SoTA TTS models\n\nModel architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)\n\nExisting literature on automated TTS evals\n\nTypes of metrics (MoS, prosody, naturalness)\nDatasets (NISQA, MOSNet)\nModel training & inference\nEvaluation\n\nReview of contributions & conclusion\n\n\n\nTypesetting\nThis Quarto book serves as living documentation, which should later turn into a nicely formatted PDF.\n\n\n\n\n\n\nUsing Quarto over Overleaf\n\n\n\nQuarto is able to export all this markup to TeX and then to a PDF document automatically thanks to Pandoc.\nNot only do I get to write Markdown, I’m also able to version control everything using Git & automate publishing to both PDF & static HTML (this website) upon push to main with this GitHub Action",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Background\nIn comtemporary academia, the burgeoning field of synthetic speech synthesis has garnered substantial attention and interest owing to its multifarious applications spanning from human-computer interaction, such as voice powered ChatGPT, Google Home and Alexa to assistive technologies, like the Rabbit R1. Within this domain, the imperative for automated evaluations arises due to several paramount reasons.\nFirstly, the proliferation of Text-To-Speech (TTS) systems across diverse sectors necessitates a systematic means of evaluating their performance. Different downstream use cases demand optimizing for different metrics. Long form speech generation such as audiobook readers require natural flow and consistent prosody, whereas voice cloning requires evaluating intonation, cadence and emotional nuances. In applications like virtual assistants and navigation systems, intelligibility, clarity and prompt delivery are paramount.\nSecondly, these nuances are not directly present at the optimization step during training. Without jumping the gun on terminology, TTS models in general are trained on mel-spectrograms with the goal of minimizing their reconstruction loss, more formally known as spectral accuracy. This is typically computed by Mean Squared Error, \\(\\text{MSE}\\) or Mean Absolute Error, \\(\\text{MAE}\\). These metrics do not contain any information on the previously mentioned nuances in speech but merely how well it approximates the training data. This phenomenon gives rise to the need for manual assessments by human judgement. For example, the Mean Opinion Score (MoS) serves as a popular metric employed for this purpose. It operates on the premise of perceived quality of synthesized speech samples, typically on a Likert scale ranging from 1 (poor) to 5 (excellent).\nIt is no surpise then that the existing process of developing TTS systems is beset by the limitations inherent in manual evaluations. Primarily, they are labor-intensive, required significant time and resources to collect & analyze. This approach not only imposes constraints on the scalability of evaluation efforts but also introduces biases and variability stemming from inter-rater differences in subjective perception.\nHowever, the recent advancements in deep learning such as the advent of Transformers and Self Attention has accelerated research on data-driven approaches to predict these subjective quality metrics with remarkable accuracy, including Lo et al. (2019) and Mittag et al. (2021). The significance of reliable evaluation systems can alleviate the reliance on manual human assessments but also offer a scalable and objective means of evaluating TTS systems.",
+    "text": "1.1 Background\nIn comtemporary academia, the burgeoning field of synthetic speech synthesis has garnered substantial attention and interest owing to its multifarious applications spanning from human-computer interaction, such as voice powered ChatGPT, Google Home and Alexa to assistive technologies, like the Rabbit R1. Within this domain, the imperative for automated evaluations arises due to several paramount reasons.\nFirstly, the proliferation of Text-To-Speech (TTS) systems across diverse sectors necessitates a systematic means of evaluating their performance. Different downstream use cases demand optimizing for different metrics. Long form speech generation such as audiobook readers require natural flow and consistent prosody, whereas voice cloning requires evaluating intonation, cadence and emotional nuances. In applications like virtual assistants and navigation systems, intelligibility, clarity and prompt delivery are paramount.\nSecondly, these nuances are not directly present at the optimization step during training. Without jumping the gun on terminology, TTS models in general are trained on mel-spectrograms with the goal of minimizing their reconstruction loss, more formally known as spectral accuracy. This is typically computed by Mean Squared Error (\\(\\text{MSE}\\) or \\(L2\\) loss) or Mean Absolute Error (\\(\\text{MAE}\\) or \\(L1\\) loss). These metrics do not contain any information on the previously mentioned nuances in speech but merely how well it approximates the training data. This phenomenon gives rise to the need for manual assessments by human judgement. For example, the Mean Opinion Score (MoS) serves as a popular metric employed for this purpose. It operates on the premise of perceived quality of synthesized speech samples, typically on a Likert scale ranging from 1 (poor) to 5 (excellent).\nIt is no surpise then that the existing process of developing TTS systems is beset by the limitations inherent in manual evaluations. Primarily, they are labor-intensive, required significant time and resources to collect & analyze. This approach not only imposes constraints on the scalability of evaluation efforts but also introduces biases and variability stemming from inter-rater differences in subjective perception.\nHowever, the recent advancements in deep learning such as the advent of Autoregressive Transformers, Self Attention and Diffusers has accelerated research on data-driven approaches to predict these subjective quality metrics with remarkable accuracy, including Lo et al. (2019) and Mittag et al. (2021). The significance of reliable evaluation systems can alleviate the reliance on manual human assessments but also offer a scalable and objective means of evaluating TTS systems.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -30,11 +30,91 @@
     ]
   },
   {
+    "objectID": "tts.html",
+    "href": "tts.html",
+    "title": "2  Text To Speech Architectures",
+    "section": "",
+    "text": "2.1 Tacotron 1 & 2",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Text To Speech Architectures</span>"
+    ]
+  },
+  {
+    "objectID": "tts.html#speech-t5",
+    "href": "tts.html#speech-t5",
+    "title": "2  Text To Speech Architectures",
+    "section": "2.2 Speech T5",
+    "text": "2.2 Speech T5",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Text To Speech Architectures</span>"
+    ]
+  },
+  {
+    "objectID": "tts.html#vits",
+    "href": "tts.html#vits",
+    "title": "2  Text To Speech Architectures",
+    "section": "2.3 VITS",
+    "text": "2.3 VITS",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Text To Speech Architectures</span>"
+    ]
+  },
+  {
+    "objectID": "tts.html#tortoise-tts",
+    "href": "tts.html#tortoise-tts",
+    "title": "2  Text To Speech Architectures",
+    "section": "2.4 Tortoise TTS",
+    "text": "2.4 Tortoise TTS",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Text To Speech Architectures</span>"
+    ]
+  },
+  {
+    "objectID": "related-work.html",
+    "href": "related-work.html",
+    "title": "3  Related Work",
+    "section": "",
+    "text": "3.1 MOSNet",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Related Work</span>"
+    ]
+  },
+  {
+    "objectID": "related-work.html#nisqa",
+    "href": "related-work.html#nisqa",
+    "title": "3  Related Work",
+    "section": "3.2 NISQA",
+    "text": "3.2 NISQA",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Related Work</span>"
+    ]
+  },
+  {
+    "objectID": "experiments.html",
+    "href": "experiments.html",
+    "title": "4  Experimental Setup",
+    "section": "",
+    "text": "4.1 Dataset Curation\nWe compile the commercially usable subset of the overarching NISQA training set as follows.\nThe Blizzard Challenge is a TTS competition overseen by SynSIG, a special interest group of ISCA, the International Speech Communication Association.\nEvery year, research groups from numerous global institutions undertake the task of training a model to synthesise speech in various languages. The dataset provided by the challenge are often donated by external organisations, subject to an agreed level of licensing.\nGenerated speech submitted by participants are then evaluated via systematic subjective tests by a mixture of paid and volunteer human listeners. In particular, the subjects are asked to rate the quality of each synthesized sample according to a set of pre-defined criterion, including, speaker similarity, naturalness (MOS) and intelligibility (WER). This collection of these three metrics are largely consistent across the years.\nA summary of the final dataset is described in the following table.\nAdditional, we note that there is a significant amount of available data not included in our dataset due to restrictions on commercial usage. These include Maniati et al. (2022) with over 300 thousand listener ratings.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Experimental Setup</span>"
+    ]
+  },
+  {
+    "objectID": "experiments.html#dataset-curation",
+    "href": "experiments.html#dataset-curation",
+    "title": "4  Experimental Setup",
+    "section": "",
+    "text": "Blizzard Challenge (2008 - 2023)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\nYears\nComments\nMetrics\n\n\n\n\nBlizzard Challenge\n2008 -&gt; 2023\nOnly commercial allowed subset\nmos, wer, speaker_sim\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nManiati, Georgia, Alexandra Vioni, Nikolaos Ellinas, Karolos Nikitaras, Konstantinos Klapsas, June Sig Sung, Gunu Jho, Aimilios Chalamandaris, and Pirros Tsiakoulis. 2022. “SOMOS: The Samsung Open MOS Dataset for the Evaluation of Neural Text-to-Speech Synthesis.” In Proc. Interspeech 2022, 2388–92. https://doi.org/10.21437/Interspeech.2022-10922.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Experimental Setup</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Lo, Chen-Chou, Szu-Wei Fu, Wen-Chin Huang, Xin Wang, Junichi Yamagishi,\nYu Tsao, and Hsin-Min Wang. 2019. “MOSNet: Deep Learning-Based\nObjective Assessment for Voice Conversion.” In Interspeech\n2019. Interspeech_2019. ISCA. https://doi.org/10.21437/interspeech.2019-2003.\n\n\nMittag, Gabriel, Babak Naderi, Assmaa Chehadi, and Sebastian Möller.\n2021. “NISQA: A Deep CNN-Self-Attention Model for Multidimensional\nSpeech Quality Prediction with Crowdsourced Datasets.” In\nInterspeech 2021. Interspeech_2021. ISCA. https://doi.org/10.21437/interspeech.2021-299.",
+    "text": "Lo, Chen-Chou, Szu-Wei Fu, Wen-Chin Huang, Xin Wang, Junichi Yamagishi,\nYu Tsao, and Hsin-Min Wang. 2019. “MOSNet: Deep Learning-Based\nObjective Assessment for Voice Conversion.” In Interspeech\n2019. Interspeech_2019. ISCA. https://doi.org/10.21437/interspeech.2019-2003.\n\n\nManiati, Georgia, Alexandra Vioni, Nikolaos Ellinas, Karolos Nikitaras,\nKonstantinos Klapsas, June Sig Sung, Gunu Jho, Aimilios Chalamandaris,\nand Pirros Tsiakoulis. 2022. “SOMOS: The\nSamsung Open MOS Dataset for the Evaluation of Neural Text-to-Speech\nSynthesis.” In Proc. Interspeech 2022, 2388–92.\nhttps://doi.org/10.21437/Interspeech.2022-10922.\n\n\nMittag, Gabriel, Babak Naderi, Assmaa Chehadi, and Sebastian Möller.\n2021. “NISQA: A Deep CNN-Self-Attention Model for Multidimensional\nSpeech Quality Prediction with Crowdsourced Datasets.” In\nInterspeech 2021. Interspeech_2021. ISCA. https://doi.org/10.21437/interspeech.2021-299.",
     "crumbs": [
       "References"
     ]
