@@ -1,11 +1,11 @@
 # Preface {.unnumbered}
 
+::: {.callout-warning}
+This page is a work in progress
+:::
+
 ### Project
 The focus of this project is on automated evaluation of synthetic speech, ie: **Text-To-Speech (TTS)** models.
-
-::: {.callout-warning}
-Everything here is a work in progress!
-:::
 
 It aims to cover the following non-exhaustive list of topics in a gentle but technical manner:
 
@@ -13,19 +13,16 @@ It aims to cover the following non-exhaustive list of topics in a gentle but tec
 2. How deep learning is applied to audio waveforms for different downstream tasks.
 3. Existing literature on SoTA TTS models
     - Model architecture (spectrogram feature extractors [CNN], GPT, Transformers, Diffusers, Vocoders)
-    - `(digression)` Some notebooks on how to inference them
-    - `(digression)` Some notebooks on how to fine tune them
 4.  Existing literature on automated TTS evals
-    - Types of metrics (MoS, prosody, naturalness, ...)
-    - Datasets (NISQA, MOSNet, ...)
-    - Some notebooks on how to inference them
-    - **How to train them**
+    - Types of metrics (MoS, prosody, naturalness)
+    - Datasets (NISQA, MOSNet)
+    - Model training & inference
     - Evaluation
 5. Review of contributions & conclusion
 
 ### Typesetting
 
-This [**Quarto**](https://quarto.org/) book serves as living documentation, which should later turn into the final paper I need for submission.
+This [**Quarto**](https://quarto.org/) book serves as living documentation, which should later turn into a nicely formatted PDF.
 
 ::: {.callout-tip}
 ### Using Quarto over Overleaf

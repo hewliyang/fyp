@@ -1,1 +1,23 @@
 # Experimental Setup
+
+## Dataset Curation
+
+We compile the commercially usable subset of the overarching NISQA training set as follows.
+
+1. **Blizzard Challenge (2008 - 2023)**
+
+The Blizzard Challenge is a TTS competition overseen by SynSIG, a special interest group of ISCA, the International Speech Communication Association.
+
+Every year, research groups from numerous global institutions undertake the task of training a model to synthesise speech in various languages. The dataset provided by the challenge are often [donated](https://www.synsig.org/index.php/Blizzard_Challenge_organisation#Data_providers_for_each_challenge) by external organisations, subject to an agreed level of licensing.
+
+Generated speech submitted by participants are then evaluated via systematic subjective tests by a mixture of paid and volunteer human listeners. In particular, the subjects are asked to rate the quality of each synthesized sample according to a set of pre-defined criterion, including, speaker similarity, naturalness (MOS) and intelligibility (WER). This collection of these three metrics are largely consistent across the years.
+
+A summary of the final dataset is described in the following table.
+
+| Source | Years | Comments | Metrics |
+|--------|-------|----------|---------|
+|Blizzard Challenge|2008 -> 2023| Only commercial allowed subset|`mos`, `wer`, `speaker_sim`|
+|        |       |          |         |
+
+
+Additional, we note that there is a significant amount of available data not included in our dataset due to restrictions on commercial usage. These include @maniati22_interspeech with over 300 thousand listener ratings.
